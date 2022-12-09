@@ -2,18 +2,52 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => res.type('html').send(html));
+app.get("/", (req, res) => res.type("html").send(html));
 
-app.get('/req', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yo!')
-})
+app.get("/meunome", (req, res) => {
+  res.send(
+    "<style>*{font-family: sans-serif};</style><h1>Meu nome é Igor Vinicius de Souza Santana</h1>"
+  );
+});
+
+app.get("/tico", (req, res) => {
+  res.send(
+    '<h1>Teco</h1><img src="https://th.bing.com/th/id/R.8dcc1f403fed853ea5aca1552da04a0a?rik=oQybb4Lz%2b0Uibg&riu=http%3a%2f%2f4.bp.blogspot.com%2f-OgY_4NgFggM%2fTbxKUz6IJnI%2fAAAAAAAAAK4%2fzkqKGqcOIU8%2fs1600%2ftico%2be%2bteco%2bpiscando.jpg&ehk=cNjkQ5bBN0HMD557SFd%2fCnoO%2fIML1X0s%2bzr0deyAq2s%3d&risl=&pid=ImgRaw&r=0" width="50%" />'
+  );
+});
+
+app.get("/pokemons", (req, res) => {
+  const pokemons = {
+    ash: [
+      "Pikachu",
+      "Caterpie",
+      "Pidgeotto",
+      "Metapod",
+      "Butterfree",
+      "Bulbasaur",
+      "Charmander",
+      "Squirtle",
+      "Krabby",
+      "Raticate",
+    ],
+  };
+  res.json(pokemons);
+});
+
+app.post("/series", (req, res) => {
+
+
+  const seriesFavoritas = {series: [req.body.serie1, req.body.serie2, req.body.serie3]}
+  res.json(seriesFavoritas);
+});
+
+
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
 
 const html = `
 <!DOCTYPE html>
@@ -64,4 +98,4 @@ const html = `
     </section>
   </body>
 </html>
-`
+`;
