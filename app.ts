@@ -1,4 +1,5 @@
-const express = require("express");
+import express, { Express, Request, Response } from "express";
+
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -38,14 +39,11 @@ app.get("/pokemons", (req, res) => {
 });
 
 app.post("/series", (req, res) => {
-
-
-  const seriesFavoritas = {series: [req.body.serie1, req.body.serie2, req.body.serie3]}
+  const seriesFavoritas = {
+    series: [req.body.serie1, req.body.serie2, req.body.serie3],
+  };
   res.json(seriesFavoritas);
 });
-
-
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
